@@ -49,7 +49,7 @@
 				 $_SESSION['emailUser'] = $res[0] -> getEmailUser() ;
 
 				 //redirection vers le l'acceuil
-				 header('location:board.php');
+				 header('location:board.html');
 
 				}else{
 					$_ERROR['state'] = true;
