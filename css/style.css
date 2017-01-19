@@ -1,0 +1,32 @@
+.jumbotron{
+  padding: 10px;
+  max-height: 200px;
+}
+.btn-default{
+  margin-top: 5px;
+}
+.head-log{
+  max-width: 320px;
+  display: inline-block;
+  padding: 10px;
+}
+.head-log span{
+  max-width: 130px;
+  height: 80px;
+}
+.container-head{
+  display: inline;
+}
+.head-container{
+  margin-bottom: 20px;
+}
+.formulaire-courrier{
+  width: 40%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.overview-file{
+  width: 57%;
+  height: 600px;
+  margin-left: 20px;
+}

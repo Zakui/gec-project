@@ -25,6 +25,54 @@ class CRUD{
 					)
 				);
 		}
+		public function insertCourrier(Courrier $courrier){
+	 	$req = $this -> bdd -> prepare(
+	 							'INSERT IGNORE INTO courrier (registrationNumbre,courrierTitle,courrierDescription,arrivalDate,pageNumber,source,reference)
+	 									 VALUES(:registrationNumbre,:courrierTitle,:courrierDescription,:arrivalDate,:pageNumber,:source,:reference)
+	 						');
+	 			$req->execute(
+	 				array(
+	 					'registrationNumbre' => $courrier -> getRegistrationNumbre(),
+	 					'courrierTitle' => $courrier -> getCourrierTitle(),
+	 					'courrierDescription' => $courrier -> getCourrierDescription(),
+	 					'arrivalDate' => $courrier -> getArrivalDate(),
+						'pageNumber' => $courrier -> getPageNumber(),
+	 					'source' => $courrier -> getSource(),
+	 					'reference' => $courrier -> getReference()
+	 				)
+	 			);
+	 	}//fct
+
+		public function selectCourrierById($id){
+			$id = htmlspecialchars($id);
+
+			$requete = $this -> bdd ->prepare('SELECT * FROM courrier
+												WHERE courrierId = :id
+												LIMIT 1
+										    ');
+			 $requete->execute(array(
+							'id' => $id
+							));
+
+			if($requete ->rowCount()>0){
+				$tmp = $requete -> fetch();
+				$user = new Courrier($tmp);
+				return $courrier;
+			}else return null;
+		}//fct
+
+		public function selectCourrierAll(){
+			$requete = $this -> bdd ->query('SELECT * FROM courrier
+											 ORDER BY arrivalDate ASC
+										');
+			$courriers = array();
+			if($requete ->rowCount()>0){ //ya des resultat
+					while($tmp = $requete -> fetch()){
+						$courriers[] = new Courrier($tmp);
+				}
+				return $courriers;
+			}else return null;
+		}//fct
 
 	public function selectUserByEmailPass($email,$pass){
 		$email = htmlspecialchars($email);
